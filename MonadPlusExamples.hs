@@ -1,4 +1,4 @@
-module MonadPlusExamples where
+module Main where
 import Control.Monad
 
 lookupM :: (MonadPlus m, Eq a) => a -> [(a, b)] -> m b
