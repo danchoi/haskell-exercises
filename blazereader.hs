@@ -18,7 +18,10 @@ data User = User {
 -- http://www.stephendiehl.com/posts/haskell_web.html
 
 instance ToMarkup User where
-  toMarkup = toHtml . show
+  toMarkup user = do 
+    H.p $ do
+      "Username: "
+      toHtml (username user)
 
 
 userBox :: Reader User Html
