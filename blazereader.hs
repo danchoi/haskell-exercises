@@ -13,6 +13,18 @@ data User = User {
   , userId :: Int
   } deriving (Show)
 
+
+userBox :: Reader User Html
+userBox = do
+  user <- ask
+  return $ 
+      dl $ do
+        dt $ "Username" 
+        dd $ H.toHtml $ username user
+        dt $ "UserId" 
+        dd $ H.toHtml $ userId user
+  
+
 page :: Reader User Html
 page = do
   user <- ask
@@ -20,11 +32,23 @@ page = do
     H.head $ title "Reader Monad Blaze Example"
     H.body $ do
       h1 $ "Hello world"
-      dl $ do
-        dt $ "Username" 
-        dd $ H.toHtml $ username user
-        dt $ "UserId" 
-        dd $ H.toHtml $ userId user
+      runReader userBox user
+
+{-
+
+Nesting runReader is a bit awkward; see commentary at
+http://ocharles.org.uk/blog/posts/2012-12-22-24-days-of-hackage-blaze.html:
+
+There are sadly a few drawbacks to blaze-html - notably it is not a “true”
+monad (it violates the monad laws), nor is it a monad transformer. It would be
+fantastic if it was a transformer, as we’d then be free to use a Reader monad
+as our base monad, which might provide a nice abstraction to passing around
+common variables in templates (e.g., the currently logged in user). That’s not
+to say these things are impossible - you can always layer Reader on top of
+Html, but it just becomes a tad harder to work with.
+
+-}
+
 
 main = do
   let res = runReader page (User "dan" 1)
