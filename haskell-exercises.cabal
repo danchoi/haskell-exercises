@@ -28,3 +28,14 @@ executable reader
   build-depends:       base >=4.6 && <4.7, mtl
   default-language:    Haskell2010
 
+executable blazereader
+  main-is: blazereader.hs
+  build-depends:       
+      base >=4.6 && <4.7,
+      mtl,
+      blaze-html,
+      blaze-markup,
+      text,
+      bytestring
+  default-language:    Haskell2010
+
