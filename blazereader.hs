@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 import qualified Text.Blaze.Html5 as H
+import Text.Blaze (ToMarkup(..))
 import Text.Blaze.Html5
 import qualified Text.Blaze.Html.Renderer.Utf8 as TB (renderHtml)
 import Control.Monad.Reader
@@ -14,15 +15,22 @@ data User = User {
   } deriving (Show)
 
 
+-- http://www.stephendiehl.com/posts/haskell_web.html
+
+instance ToMarkup User where
+  toMarkup = toHtml . show
+
+
 userBox :: Reader User Html
 userBox = do
   user <- ask
-  return $ 
+  return $ do
       dl $ do
         dt $ "Username" 
         dd $ H.toHtml $ username user
         dt $ "UserId" 
         dd $ H.toHtml $ userId user
+      H.p $ toMarkup user
   
 
 page :: Reader User Html
