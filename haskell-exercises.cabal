@@ -39,3 +39,30 @@ executable blazereader
       bytestring
   default-language:    Haskell2010
 
+executable blazesimple
+  main-is: blazesimple.hs
+  build-depends:       
+      base >=4.6 && <4.7,
+      blaze-html,
+      blaze-markup,
+      text,
+      bytestring
+  default-language:    Haskell2010
+
+executable blazelayout
+  main-is: blazelayout.hs
+  build-depends:
+      base >= 4.6 && < 4.7,
+      blaze-html,
+      blaze-markup,
+      text, 
+      bytestring
+  default-language:   Haskell2010
+
+executable monadsupply
+  main-is: monadsupply.hs
+  build-depends:
+      base >= 4.6 && < 4.7,
+      mtl,
+      random
+  default-language:   Haskell2010
