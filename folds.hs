@@ -21,6 +21,14 @@ foldrMap :: (a -> b) -> [a] -> [b]
 foldrMap f as = foldr step [] as
   where step a bs  = (f a) : bs
   
+-- foldl using foldr
+-- complex
+-- See http://stackoverflow.com/questions/6172004/writing-foldl-using-foldr
+foldlUsingFoldr :: (a -> b -> a) -> a -> [b] -> a
+foldlUsingFoldr f z xs = foldr step id xs z
+  where step x g a = g (f a x)
+
+
 
 main = do
   let xs = [1,2,3]
@@ -32,4 +40,5 @@ main = do
 
   print (foldrMap (*2) xs == map (*2) xs)
 
+  print (foldl (*) 0 xs == foldlUsingFoldr (*) 0 xs)
 
