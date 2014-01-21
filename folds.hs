@@ -1,4 +1,6 @@
 module Main where
+import Data.Char (digitToInt)
+import Data.List (foldl')
 
 -- foldl :: (a -> b -> a) -> a -> [b] -> a
 -- foldr :: (a -> b -> b) -> b -> [a] -> b
@@ -29,6 +31,9 @@ foldlUsingFoldr f z xs = foldr step id xs z
   where step x g a = g (f a x)
 
 
+asInt :: String -> Int
+asInt xs = foldl' step 0 xs
+  where step acc char = digitToInt char + (acc * 10)
 
 main = do
   let xs = [1,2,3]
@@ -42,3 +47,4 @@ main = do
 
   print (foldl (*) 0 xs == foldlUsingFoldr (*) 0 xs)
 
+  print (asInt "23")
