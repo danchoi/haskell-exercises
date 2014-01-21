@@ -1,7 +1,9 @@
 module Main where
 
--- filter implemented with foldr
+-- foldl :: (a -> b -> a) -> a -> [b] -> a
 -- foldr :: (a -> b -> b) -> b -> [a] -> b
+
+-- filter implemented with foldr
 
 foldrfilter :: (a -> Bool) -> [a] -> [a]
 foldrfilter p xs = foldr step [] xs
