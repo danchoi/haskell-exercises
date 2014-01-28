@@ -80,7 +80,8 @@ executable attoparsec
   main-is: attoparsec.hs
   build-depends:
       base >= 4.6 && < 4.7,
-      attoparsec
+      attoparsec,
+      text
   default-language:   Haskell2010
 
 
