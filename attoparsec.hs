@@ -6,6 +6,7 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Attoparsec.Text
 import Control.Applicative
+import Control.Monad
 
 testString = "hello world one two three red banana mars"
 
@@ -19,7 +20,23 @@ data Chunk = Tag Text | Noise Text
 
 
 p2 :: Parser [Chunk]
+
+-- choice and msum seem to work the same way
 p2 = (choice $ tags ++ [noise]) `sepBy1` many1 space
+
+{-
+
+msum        :: MonadPlus m => [m a] -> m a
+msum        =  foldr mplus mzero
+
+choice :: Alternative f => [f a] -> f a
+choice = foldr (<|>) empty
+
+class Applicative f => Alternative f where
+(<|>) :: f a -> f a -> f a
+
+-}
+
 
 tags = map f [string "hello", string "world", string "hello world", string "one two", string "red"]
     where f = (\parser -> Tag <$> parser )
