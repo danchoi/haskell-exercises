@@ -9,3 +9,4 @@ instance Exception MyException
 
 main = do
   throw MyException `catch` \e -> print (e :: MyException)
+  throw (ErrorCall "ErrorCall: hello from error call") `catch` \e -> print (e :: SomeException)
