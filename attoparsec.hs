@@ -39,7 +39,7 @@ class Applicative f => Alternative f where
 
 
 tags = map f [string "hello", string "world", string "hello world", string "one two", string "red"]
-    where f = (\parser -> Tag <$> parser )
+    where f = fmap Tag 
 noise = Noise <$> takeWhile1 (not. isSpace)
 
 main = do
