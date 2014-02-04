@@ -38,8 +38,8 @@ class Applicative f => Alternative f where
 -}
 
 
-tags = map f [string "hello", string "world", string "hello world", string "one two", string "red"]
-    where f = fmap Tag 
+tags = map f ["hello", "world", "hello world", "one two", "red"]
+    where f = fmap Tag . string
 noise = Noise <$> takeWhile1 (not. isSpace)
 
 main = do
