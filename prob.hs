@@ -53,3 +53,7 @@ main = do
     coin
     coin
     coin
+
+  putStrLn . show $ do 
+    [1,2]
+    [3,4]
