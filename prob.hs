@@ -51,9 +51,17 @@ main = do
   putStrLn . show $ getProb flip1
   putStrLn . show . getProb $ do
     coin
-    coin
-    coin
+    b <- coin
+    c <- loadedCoin
+    return [c, b]
+  print $ do
+    [1,2]
+    b <- [3,4]
+    c <- [5,6]
+    return (b, c)
 
   putStrLn . show $ do 
     [1,2]
     [3,4]
+  print $ [1,2] >>= \_ ->  [3,4]
+
