@@ -1,9 +1,10 @@
 {-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, GeneralizedNewtypeDeriving #-}
 module Main where
 import Control.Monad.State
+import Control.Applicative
 import System.Random hiding (next)
 
-newtype Supply s a = S (State [s] a) deriving (Monad)
+newtype Supply s a = S (State [s] a) deriving (Monad, Applicative, Functor)
 
 runSupply :: Supply s a -> [s] -> (a, [s])
 next :: Supply s (Maybe s)
