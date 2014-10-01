@@ -21,7 +21,7 @@ randomsIO =
     let (a, b) = split g
     in (randoms a, b)
 
-class (Monad m) => MonadSupply m where 
+class MonadSupply m where 
   type Elem m
   next :: m (Maybe (Elem m))
 
