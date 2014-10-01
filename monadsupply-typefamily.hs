@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE TypeFamilies, GeneralizedNewtypeDeriving #-}
 module Main where
 import Control.Monad.State
 import Control.Applicative
@@ -21,10 +21,13 @@ randomsIO =
     let (a, b) = split g
     in (randoms a, b)
 
-class (Monad m) => MonadSupply s m | m -> s where 
-    next :: m (Maybe s)
-instance MonadSupply s (Supply s) where
-    next = next'
+class (Monad m) => MonadSupply m where 
+  type Elem m
+  next :: m (Maybe (Elem m))
+
+instance MonadSupply (Supply s) where
+  type Elem (Supply s) = s
+  next = next'
 
 main = do 
   print 1
