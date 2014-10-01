@@ -53,7 +53,7 @@ main = do
     coin
     b <- coin
     c <- loadedCoin
-    return [c, b]
+    return (b, c)
   print $ do
     [1,2]
     b <- [3,4]
@@ -65,3 +65,7 @@ main = do
     [3,4]
   print $ [1,2] >>= \_ ->  [3,4]
 
+  print $ do
+    coin 
+    coin
+  print $ (coin >> coin)
