@@ -17,21 +17,21 @@ cabal-version:       >=1.18
 
 executable monadplus
   main-is:             monadplus.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
   default-language:    Haskell2010
 executable writer
   main-is:             writer.hs
-  build-depends:       base >=4.6 && <4.7, mtl
+  build-depends:       base >=4.6 && <4.8, mtl
   default-language:    Haskell2010
 executable reader
   main-is:             reader.hs
-  build-depends:       base >=4.6 && <4.7, mtl
+  build-depends:       base >=4.6 && <4.8, mtl
   default-language:    Haskell2010
 
 executable blazereader
   main-is: blazereader.hs
   build-depends:       
-      base >=4.6 && <4.7,
+      base >=4.6 && <4.8,
       mtl,
       blaze-html,
       blaze-markup,
@@ -42,7 +42,7 @@ executable blazereader
 executable blazesimple
   main-is: blazesimple.hs
   build-depends:       
-      base >=4.6 && <4.7,
+      base >=4.6 && <4.8,
       blaze-html,
       blaze-markup,
       text,
@@ -52,7 +52,7 @@ executable blazesimple
 executable blazelayout
   main-is: blazelayout.hs
   build-depends:
-      base >= 4.6 && < 4.7,
+      base >= 4.6 && < 4.8,
       blaze-html,
       blaze-markup,
       text, 
@@ -62,7 +62,7 @@ executable blazelayout
 executable monadsupply
   main-is: monadsupply.hs
   build-depends:
-      base >= 4.6 && < 4.7,
+      base >= 4.6 && < 4.8,
       mtl,
       random
   default-language:   Haskell2010
@@ -70,7 +70,7 @@ executable monadsupply
 executable async
   main-is: async.hs
   build-depends:
-      base >= 4.6 && < 4.7,
+      base >= 4.6 && < 4.8,
       mtl,
       async,
       curl >= 1.3.8
@@ -79,13 +79,20 @@ executable async
 executable attoparsec
   main-is: attoparsec.hs
   build-depends:
-      base >= 4.6 && < 4.7,
+      base >= 4.6 && < 4.8,
       attoparsec,
       text
   default-language:   Haskell2010
 
 
-executable hashdbc
-  main-is: hashdbc.hs
-  build-depends: snaplet-hdbc
+-- executable hashdbc
+--   main-is: hashdbc.hs
+--   build-depends: snaplet-hdbc
 
+
+executable pretty-printing-1
+  main-is: pretty-printing-1.hs
+  build-depends:  
+      base >= 4.6
+
+  default-language: Haskell2010
