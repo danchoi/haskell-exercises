@@ -2,13 +2,17 @@ module Main where
 import Options.Applicative
 import Control.Applicative
 
+
 data Options = Options { 
-    showVersion :: Bool
+    username :: String
   } deriving Show
+
+
 
 parseOpts :: Parser Options
 parseOpts = Options 
-    <$> switch  (long "version" <> short 'v' <> help "Show version number")
+    <$> (infoOption "Version 10.0" (short 'v' <> long "version")
+        <*> strOption (short 'u' <> metavar "USERNAME"))
 
 opts = info (helper <*> parseOpts)
           (fullDesc 
@@ -19,6 +23,4 @@ opts = info (helper <*> parseOpts)
 
 main = do
     o <- execParser opts
-    if (showVersion o)
-    then putStrLn "Version: 10.1"
-    else return ()
+    print o
